@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using ToDoApp.Pages;
 using ToDoApp.Repository;
 using ToDoApp.Service;
 using ToDoApp.ViewModels;
@@ -26,7 +27,10 @@ namespace ToDoApp
             builder.Services.AddTransient<IUserRepository, UserRepository>();
             builder.Services.AddTransient<IUserService, UserService>();
             builder.Services.AddTransient<RegisterPage>();
+            builder.Services.AddTransient<LoginPage>();
+            builder.Services.AddTransient<HomePage>();
             builder.Services.AddTransient<RegisterViewModel>();
+            builder.Services.AddTransient<LoginViewModel>();
             
             var app = builder.Build();
 

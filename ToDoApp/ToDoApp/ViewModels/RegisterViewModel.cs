@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ToDoApp.Pages;
 using ToDoApp.Service;
 
 namespace ToDoApp.ViewModels
@@ -20,7 +21,7 @@ namespace ToDoApp.ViewModels
         private string message;
 
         [RelayCommand]
-        private void Register()
+        private async void Register()
         {
             if (string.IsNullOrWhiteSpace(Username) || string.IsNullOrWhiteSpace(Password))
             {
@@ -36,7 +37,14 @@ namespace ToDoApp.ViewModels
 
             Message = "Registration successful.";
 
-            userService.Register(Username, Password);
+            await userService.Register(Username, Password);
+            await Shell.Current.GoToAsync(nameof(LoginPage));
+        }
+
+        [RelayCommand]
+        private async Task NavigateToLogin()
+        {
+            await Shell.Current.GoToAsync(nameof(LoginPage));
         }
     }
 }

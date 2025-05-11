@@ -2,9 +2,9 @@ using ToDoApp.ViewModels;
 
 namespace ToDoApp.Pages;
 
-public partial class RegisterPage : ContentPage
+public partial class LoginPage : ContentPage
 {
-    public RegisterPage(RegisterViewModel viewModel)
+	public LoginPage(LoginViewModel viewModel)
     {
 		InitializeComponent();
         BindingContext = viewModel;

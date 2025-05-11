@@ -7,9 +7,19 @@ namespace ToDoApp.Service
 {
     public class UserService(IUserRepository userRepository) : IUserService
     {
-        public Task<bool> Login(string username, string password)
+        public async Task<bool> Login(string username, string password)
         {
-            throw new NotImplementedException();
+            var user = await userRepository.GetByUsername(username);
+
+            bool shouldLogged = user != null && user.Password == GenerateHashPass(password);
+
+            if (shouldLogged)
+            {
+                await SecureStorage.SetAsync("logged_user", username);
+                return true;
+            }
+
+            return false;
         }
 
         public async Task Register(string username, string password)
