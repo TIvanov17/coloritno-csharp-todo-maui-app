@@ -25,12 +25,15 @@ namespace ToDoApp
                    options.UseSqlServer("Server=localhost,1433;Database=ToDoAppDb;User Id=sa;Password=YourStrong!Passw0rd;TrustServerCertificate=True;"));
 
             builder.Services.AddTransient<IUserRepository, UserRepository>();
+            builder.Services.AddTransient<ITaskRepository, TaskRepository>();
             builder.Services.AddTransient<IUserService, UserService>();
+            builder.Services.AddTransient<ITaskService, TaskService>();
             builder.Services.AddTransient<RegisterPage>();
             builder.Services.AddTransient<LoginPage>();
             builder.Services.AddTransient<HomePage>();
             builder.Services.AddTransient<RegisterViewModel>();
             builder.Services.AddTransient<LoginViewModel>();
+            builder.Services.AddTransient<HomePageViewModel>();
             
             var app = builder.Build();
 
@@ -53,6 +56,7 @@ namespace ToDoApp
                 Console.WriteLine($"❌ Error connecting to database: {ex.Message}");
             }
 
+            //dbContext.Database.EnsureDeleted();
             dbContext.Database.EnsureCreated();
             return app;
         }

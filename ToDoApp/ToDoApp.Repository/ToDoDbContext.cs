@@ -6,5 +6,6 @@ namespace ToDoApp.Repository
     public class ToDoDbContext(DbContextOptions options) : DbContext(options)
     {
         public DbSet<User> Users { get; set; }
+        public DbSet<Tasks> Tasks { get; set; }
     }
 }

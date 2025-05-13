@@ -11,6 +11,7 @@ namespace ToDoApp
             Routing.RegisterRoute("RegisterPage", typeof(RegisterPage));
             Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
             Routing.RegisterRoute("HomePage", typeof(HomePage));
+
         }
     }
 }

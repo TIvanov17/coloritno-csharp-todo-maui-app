@@ -5,6 +5,5 @@
         Task<bool> Login(string username, string password);
 
         Task Register(string username, string password);
-
     }
 }

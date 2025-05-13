@@ -1,12 +1,75 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ToDoApp.ViewModels"
+             xmlns:vm="clr-namespace:ToDoApp.ViewModels"
              x:Class="ToDoApp.Pages.HomePage"
-             Title="HomePage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+             Title="HomePage"
+             BackgroundColor="#F7F7F7">
+
+    <VerticalStackLayout Padding="20" Spacing="15">
+
+        <Entry Text="{Binding NewTask}"
+               Placeholder="Enter new task"
+               TextColor="#333"
+               BackgroundColor="White"
+               HeightRequest="50"
+               FontSize="18"/>
+
+        <Button Text="Add Task"
+                Command="{Binding AddTaskCommand}"
+                BackgroundColor="#4CAF50"
+                TextColor="White"
+                CornerRadius="10"
+                HeightRequest="50"
+                FontSize="18"
+                Padding="10, 0"/>
+
+        <ListView ItemsSource="{Binding ToDoItems}"
+                  HasUnevenRows="True"
+                  BackgroundColor="Transparent"
+                  SeparatorVisibility="Default"
+            >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal"
+                                     VerticalOptions="Center"
+                                     Padding="15"
+                                     Spacing="15"
+                                     BackgroundColor="White"
+                                     Margin="0, 5"
+                                     Shadow="True" 
+                                     HeightRequest="70">
+
+                            <CheckBox IsChecked="{Binding IsCompleted}"
+                                      VerticalOptions="Center"
+                                      Color="#4CAF50"
+                                      Scale="1.5" />
+
+                            <Label Text="{Binding Title}"
+                                   VerticalOptions="Center"
+                                   FontSize="16"
+                                   FontAttributes="Bold"
+                                   TextColor="#333"
+                                   HorizontalOptions="StartAndExpand" />
+
+                            <Button Text="Delete"
+                                    CommandParameter="{Binding .}"
+                                    BackgroundColor="Red"
+                                    TextColor="White"
+                                    CornerRadius="10"
+                                    WidthRequest="80"
+                                    HeightRequest="40"
+                                    VerticalOptions="Center"
+                                    FontSize="14"
+                                    Padding="0"
+                                    Clicked="OnDeleteClicked" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView>
+
     </VerticalStackLayout>
 </ContentPage>
